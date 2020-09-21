@@ -33,11 +33,9 @@ public class UserResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	@RequestMapping(value ="/{id}", method=RequestMethod.GET)
-	// ou @GetMapoing
-	public ResponseEntity<UserDTO> findById(@PathVariable String id){ // pathvariable para aceitar o id com id do parametro
-		Optional<User> obj = service.findById(id);
-		
+	@RequestMapping(value ="/{id}", method=RequestMethod.GET)	
+	public ResponseEntity<UserDTO> findById(@PathVariable String id){ 
+		Optional<User> obj = service.findById(id);		
 		return ResponseEntity.ok().body(new UserDTO());
 	}
 	
@@ -51,4 +49,12 @@ public class UserResource {
 		return ResponseEntity.created(uri).build(); 
 		
 	}
+	
+	@RequestMapping(value ="/{id}", method=RequestMethod.DELETE)	
+	public ResponseEntity<Void> delete(@PathVariable String id){ 
+		service.delete(id);		
+		return ResponseEntity.noContent().build();
+	}
+	
+	
 }
